@@ -53,6 +53,10 @@ Weld contains "value" types that hold data, as well as "builder" types that are 
 * Structs: `{T1, T2, ...}` for field types `T1`, `T2`, etc.
 
 Except from the SIMD type `simd[S]` (where `S` must be a scalar type), `T` in the types above can be any other type.
+* Scalars: `bool`, `i8`, `i16`, `i32`, `i64`, `f32`, `f64`.
+* Vectors: `vec[T]` for some type `T`. These are variable-length.
+* Dictionaries: `dict[K, V]` for types K, V.
+* Structs: `{T1, T2, ...}` for field types T1, T2, etc.
 
 ## Builder Types
 
