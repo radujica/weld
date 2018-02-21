@@ -8,6 +8,11 @@
 
 using namespace std;
 
+
+/**
+ * Converts numpy array to Weld vector.
+ */
+>>>>>>> Add support for i16 dtype
 extern "C"
 weld::vec<int16_t> numpy_to_weld_int16_arr(PyObject* in) {
     PyArrayObject* inp = (PyArrayObject*) in;
@@ -356,6 +361,21 @@ weld::vec<weld::vec<uint8_t> > numpy_to_weld_char_arr_arr(PyObject* in) {
  */
 extern "C"
 PyObject* weld_to_numpy_int16_arr(weld::vec<int16_t> inp) {
+<<<<<<< HEAD
+=======
+    Py_Initialize();
+    npy_intp size = {inp.size};
+    _import_array();
+    PyObject* out = PyArray_SimpleNewFromData(1, &size, NPY_INT16, (char*)inp.ptr);
+    return out;
+}
+
+/**
+ * Converts Weld vector to numpy array.
+ */
+extern "C"
+PyObject* weld_to_numpy_int_arr(weld::vec<int> inp) {
+>>>>>>> Add support for i16 dtype
     Py_Initialize();
     npy_intp size = {inp.size};
     _import_array();
@@ -428,6 +448,33 @@ PyObject* weld_to_numpy_bool_arr(weld::vec<bool> inp) {
  */
 extern "C"
 PyObject* weld_to_numpy_int16_arr_arr(weld::vec< weld::vec<int16_t> > inp) {
+<<<<<<< HEAD
+=======
+    Py_Initialize();
+
+    int num_rows = inp.size;
+    int num_cols = inp.ptr[0].size;
+
+    npy_intp size[2] = {num_rows, num_cols};
+    int16_t *ptr_array = (int16_t *) malloc(sizeof(int16_t) * num_rows * num_cols);
+
+    for (int i = 0; i < num_rows; i++) {
+        for (int j = 0; j < num_cols; j++) {
+            ptr_array[i * num_cols + j] = *((int16_t *) inp.ptr[i].ptr + j);
+        }
+    }
+
+    _import_array();
+    PyObject* out = PyArray_SimpleNewFromData(2, size, NPY_INT16, (char*)ptr_array);
+    return out;
+}
+
+/**
+ * Converts Weld vector-of-int-vectors to two-dimensional numpy array.
+ */
+extern "C"
+PyObject* weld_to_numpy_int_arr_arr(weld::vec< weld::vec<int> > inp) {
+>>>>>>> Add support for i16 dtype
     Py_Initialize();
 
     int num_rows = inp.size;

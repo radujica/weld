@@ -507,6 +507,18 @@ fn parse_i16_literal(input: &str, base: u32) -> WeldResult<Token> {
     }
 }
 
+fn parse_i16_literal(input: &str, base: u32) -> WeldResult<Token> {
+    let slice = if base == 10 {
+        &input[..input.len() - 2]
+    } else {
+        &input[2..input.len() - 2]
+    };
+    match i16::from_str_radix(slice, base) {
+        Ok(value) => Ok(Token::TI16Literal(value)),
+        Err(_) => weld_err!("Invalid i16 literal: {}", input), 
+    }
+}
+
 fn parse_i32_literal(input: &str, base: u32) -> WeldResult<Token> {
     let slice = if base == 10 { input } else { &input[2..] };
     match i32::from_str_radix(slice, base) {
