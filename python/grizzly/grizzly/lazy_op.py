@@ -18,6 +18,7 @@ def to_weld_type(weld_type, dim):
     return weld_type
 
 
+# TODO: this should be generalized and included as a core thing/interface in pyweld; not grizzly
 class LazyOpResult(object):
     """Wrapper class around as yet un-evaluated Weld computation results
 
