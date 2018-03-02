@@ -97,6 +97,14 @@ class WeldObject(object):
     def __repr__(self):
         return self.weld_code + " " + str(self.context) + " " + str([obj_id for obj_id in self.dependencies])
 
+    @staticmethod
+    def generate_input_name(value_str):
+        name = "_inp%d" % WeldObject._var_num
+        WeldObject._var_num += 1
+        WeldObject._registry[value_str] = name
+
+        return name
+
     def update(self, value, tys=None, override=True):
         """
         Update this context. if value is another context,
@@ -113,9 +121,7 @@ class WeldObject(object):
             if value_str in WeldObject._registry:
                 name = WeldObject._registry[value_str]
             else:
-                name = "_inp%d" % WeldObject._var_num
-                WeldObject._var_num += 1
-                WeldObject._registry[value_str] = name
+                name = self.generate_input_name(value_str)
             self.context[name] = value
             if tys is not None and not override:
                 self.argtypes[name] = tys
