@@ -11,7 +11,9 @@ import sys
 
 import pkg_resources
 
+# object is a hack! TODO: fix it
 numpy_to_weld_type_mapping = {
+    'object': WeldVec(WeldChar()),
     'str': WeldVec(WeldChar()),
     'int16': WeldInt16(),
     'int32': WeldInt(),
