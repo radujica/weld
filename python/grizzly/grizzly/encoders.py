@@ -7,6 +7,7 @@ import pkg_resources
 
 _numpy_to_weld_type_mapping = {
     'S': WeldVec(WeldChar()),
+    'b': WeldChar(),
     'h': WeldInt16(),
     'i': WeldInt(),
     'l': WeldLong(),
