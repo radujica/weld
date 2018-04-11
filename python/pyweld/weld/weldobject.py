@@ -105,6 +105,10 @@ class WeldObject(object):
 
         return name
 
+    @staticmethod
+    def load_binary(path_to_so):
+        CDLL(path_to_so, mode=RTLD_GLOBAL)
+
     def update(self, value, tys=None, override=True):
         """
         Update this context. if value is another context,
