@@ -12,7 +12,7 @@ import pkg_resources
 
 system = platform.system()
 if system == 'Linux':
-    lib_file = "libweld.so"
+    lib_file = "libweld_debug.so"
 elif system == 'Windows':
     lib_file = "libweld.dll"
 elif system == 'Darwin':
