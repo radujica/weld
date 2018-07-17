@@ -222,7 +222,7 @@ class WeldObject(object):
         start = time.time()
         conf = cweld.WeldConf()
         conf.set("weld.threads", str(num_threads))
-        conf.set("weld.memory.limit", "100000000000")
+        conf.set("weld.memory.limit", "250000000000")
         conf.set("weld.optimization.applyExperimentalTransforms",
                  "true" if apply_experimental_transforms else "false")
         err = cweld.WeldError()
